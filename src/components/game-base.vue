@@ -56,6 +56,9 @@
 
 <script>
 export default {
+  props: {
+    username: String 
+  },
   data() {
     return {
       context: null,
@@ -70,7 +73,6 @@ export default {
       gridSize: 15,
       cellCountX: 0,
       cellCountY: 0,
-      username: null,
       time: 0.0,
       records: [],
     };
@@ -120,7 +122,6 @@ export default {
   },
   methods: {
     sortedRecords() {
-      console.log("Está siendo llamada");
       return this.records.sort((a, b) => b.score - a.score);
     },
     startTimer() {

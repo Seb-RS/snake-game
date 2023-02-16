@@ -2,7 +2,13 @@
   <div
     class="flex flex-col justify-center items-center bg-black w-screen h-screen p-12 text-green-500 overflow-x-hidden"
   >
-    <div class="flex flex-col mx-auto">
+    <div
+      class="flex flex-col mx-auto"
+      v-motion
+      :initial="{ opacity: 0, y: 100 }"
+      :enter="{ opacity: 1, y: 0, scale: 1 }"
+      :delay="200"
+    >
       <div class="flex-col w-full h-max justify-start items-center mb-1">
         <p>Time: {{ formatTime(time) }}</p>
         <p>Score: {{ score }}</p>
@@ -36,10 +42,14 @@
           </div>
         </div>
       </div>
-      <div class="flex flex-col w-full justify-center items-start mt-2 text-center text-green-700 font-extralight">
+      <div
+        class="flex flex-col w-full justify-center items-start mt-2 text-center text-green-700 font-extralight"
+      >
         <p>Use the arrow keys to move the snake.</p>
         <p>Don't run into the walls or yourself!</p>
-        <div class="flex flex-col justify-start items-start w-full h-32 overflow-y-auto font-normal">
+        <div
+          class="flex flex-col justify-start items-start w-full h-32 overflow-y-auto font-normal"
+        >
           <div v-if="records.length > 0" class="decoration-slice decoration-slate-400">
             <h1 class="text-md font-bold">Récords</h1>
           </div>
@@ -57,7 +67,7 @@
 <script>
 export default {
   props: {
-    username: String 
+    username: String,
   },
   data() {
     return {
@@ -235,22 +245,22 @@ export default {
 
 <style>
 ::-webkit-scrollbar {
-    width: 6px;
-    background-color: #000000;
-    border-radius: 10px;
+  width: 6px;
+  background-color: #000000;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(193, 193, 193, 0.3);
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(193, 193, 193, 0.3);
 }
 
 ::-webkit-scrollbar-thumb {
-    margin: auto;
-    width: 6px;
-    border-radius: 10px;
-    background-color: rgb(34 197 94 / 1);
-    -webkit-box-shadow: inset 0 0 6px rgba(57, 56, 56, 0.878);
+  margin: auto;
+  width: 6px;
+  border-radius: 10px;
+  background-color: rgb(34 197 94 / 1);
+  -webkit-box-shadow: inset 0 0 6px rgba(57, 56, 56, 0.878);
 }
 
 .list-enter-active,

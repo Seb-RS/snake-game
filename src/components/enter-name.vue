@@ -56,4 +56,6 @@ export default {
 .v-leave-to {
   opacity: 0;
 }
+
+input:focus { outline: none; }
 </style>

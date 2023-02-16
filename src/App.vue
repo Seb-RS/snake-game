@@ -25,7 +25,7 @@ export default {
         this.username = value;
         setInterval(() => {
           this.gameMain = true;
-        }, 1000);
+        }, 2000);
       }
     },
   },

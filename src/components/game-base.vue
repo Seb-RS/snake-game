@@ -79,6 +79,7 @@ export default {
     this.context = this.$refs.canvas.getContext("2d");
     this.cellCountX = this.$refs.canvas.width / this.gridSize;
     this.cellCountY = this.$refs.canvas.height / this.gridSize;
+    this.startTimer();
   },
   created() {
     if (this.isPlaying) this.direction = "right";
@@ -117,7 +118,6 @@ export default {
       this.moveSnake();
     }, 200);
   },
-  computed: {},
   methods: {
     sortedRecords() {
       console.log("Está siendo llamada");
@@ -134,7 +134,6 @@ export default {
       this.snake = [{ x: 10, y: 10 }];
       this.clearData();
       this.generateFood();
-      this.startTimer();
     },
     stopGame() {
       this.isPlaying = false;

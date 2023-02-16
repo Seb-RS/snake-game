@@ -1,16 +1,41 @@
 <template>
-  <div class="matrix-style">
-    <p>Time: {{ formatTime(time) }}</p>
-    <canvas ref="canvas" width="300" height="300"></canvas>
-    <div id="score">Score: {{ score }}</div>
-    <div class="info">
-      <p>Use the arrow keys to move the snake.</p>
-      <p>Don't run into the walls or yourself!</p>
+  <div
+    class="flex flex-col justify-center items-center bg-black w-screen h-screen p-12 text-green-500"
+  >
+    <div class="flex flex-col mx-auto">
+      <div class="flex-col w-full h-max justify-start items-center mb-1">
+        <p>Time: {{ formatTime(time) }}</p>
+        <p>Score: {{ score }}</p>
+      </div>
+      <div class="relative w-full h-full">
+        <canvas class="border border-green-500 m-auto block shadow-green-500 shadow-md" ref="canvas" width="300" height="300"></canvas>
+        <div class="mt-2 text-center text-green-700">
+          <p>Use the arrow keys to move the snake.</p>
+          <p>Don't run into the walls or yourself!</p>
+        </div>
+        <div
+          class="absolute top-[40%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-40 h-20"
+        >
+          <div class="flex flex-col justify-center items-center">
+            <h1
+              :class="!isPlaying && gameOver ? 'visible' : 'invisible'"
+              class="text-lg font-bold text-[#dc3545] mt-4"
+            >
+              GAME OVER
+            </h1>
+            <button
+              class=""
+              v-if="!isPlaying"
+              id="start-game"
+              @click="startGame"
+              :disabled="isPlaying"
+            >
+              {{ gameOver ? "Restart Game" : "Start Game" }}
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <button v-if="!isPlaying" id="start-game" @click="startGame" :disabled="isPlaying">
-      {{ gameOver ? "Restart Game" : "Start Game" }}
-    </button>
-    <h1 v-if="!isPlaying && gameOver" id="game-over">GAME OVER</h1>
   </div>
 </template>
 
@@ -168,58 +193,8 @@ export default {
       return false;
     },
     formatTime(seconds) {
-      return parseFloat(seconds.toFixed(2))
-    }
+      return parseFloat(seconds.toFixed(2));
+    },
   },
 };
 </script>
-
-<style>
-canvas {
-  border: 1px solid green;
-  margin: 0 auto;
-  display: block;
-  box-shadow: 0 0 20px green;
-}
-
-#score {
-  text-align: center;
-  margin: 10px 0;
-  font-size: 24px;
-  font-weight: bold;
-  color: green;
-}
-
-.info {
-  margin: 10px 0;
-  text-align: center;
-  font-size: 16px;
-  color: green;
-}
-
-#start-game {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#game-over {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #dc3545;
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.matrix-style {
-  background-color: #000;
-  color: #0f0;
-  font-size: 1rem;
-  font-family: monospace;
-}
-</style>

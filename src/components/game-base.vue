@@ -8,13 +8,14 @@
         <p>Score: {{ score }}</p>
       </div>
       <div class="relative w-full h-full">
-        <canvas class="border border-green-500 m-auto block shadow-green-500 shadow-md" ref="canvas" width="300" height="300"></canvas>
-        <div class="mt-2 text-center text-green-700">
-          <p>Use the arrow keys to move the snake.</p>
-          <p>Don't run into the walls or yourself!</p>
-        </div>
+        <canvas
+          class="border border-green-500 m-auto block shadow-green-500 shadow-md"
+          ref="canvas"
+          width="300"
+          height="300"
+        ></canvas>
         <div
-          class="absolute top-[40%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-40 h-20"
+          class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-40 h-20"
         >
           <div class="flex flex-col justify-center items-center">
             <h1
@@ -33,6 +34,20 @@
               {{ gameOver ? "Restart Game" : "Start Game" }}
             </button>
           </div>
+        </div>
+      </div>
+      <div class="flex flex-col w-full justify-center items-start mt-2 text-center text-green-700 font-extralight">
+        <p>Use the arrow keys to move the snake.</p>
+        <p>Don't run into the walls or yourself!</p>
+        <div class="flex flex-col justify-start items-start w-full h-32 overflow-y-auto font-normal">
+          <div v-if="records.length > 0" class="decoration-slice decoration-slate-400">
+            <h1 class="text-md font-bold">Récords</h1>
+          </div>
+          <transition-group name="list" tag="ul">
+            <li v-for="(record, index) in sortedRecords()" :key="index">
+              {{ record.name }} - {{ record.score }} point/s in ({{ record.time }}s)
+            </li>
+          </transition-group>
         </div>
       </div>
     </div>
@@ -55,7 +70,9 @@ export default {
       gridSize: 15,
       cellCountX: 0,
       cellCountY: 0,
+      username: null,
       time: 0.0,
+      records: [],
     };
   },
   mounted() {
@@ -100,7 +117,12 @@ export default {
       this.moveSnake();
     }, 200);
   },
+  computed: {},
   methods: {
+    sortedRecords() {
+      console.log("Está siendo llamada");
+      return this.records.sort((a, b) => b.score - a.score);
+    },
     startTimer() {
       setInterval(() => {
         if (!this.isPlaying) return;
@@ -117,6 +139,7 @@ export default {
     stopGame() {
       this.isPlaying = false;
       this.gameOver = true;
+      this.addRecord(this.username, this.time, this.score);
       clearInterval(this.gameLoop);
     },
     moveSnake() {
@@ -195,11 +218,36 @@ export default {
     formatTime(seconds) {
       return parseFloat(seconds.toFixed(2));
     },
-    clearData()
-    {
+    clearData() {
       this.score = 0;
       this.time = 0;
+    },
+    addRecord() {
+      this.records.push({
+        name: this.username,
+        time: this.formatTime(this.time),
+        score: this.score,
+      });
     },
   },
 };
 </script>
+
+<style>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.list-enter-to,
+.list-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>

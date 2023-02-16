@@ -1,6 +1,7 @@
 <template>
   <div class="matrix-style">
-    <canvas ref="canvas" width="400" height="400"></canvas>
+    <p>Time: {{ formatTime(time) }}</p>
+    <canvas ref="canvas" width="300" height="300"></canvas>
     <div id="score">Score: {{ score }}</div>
     <div class="info">
       <p>Use the arrow keys to move the snake.</p>
@@ -29,6 +30,7 @@ export default {
       gridSize: 15,
       cellCountX: 0,
       cellCountY: 0,
+      time: 0.0,
     };
   },
   mounted() {
@@ -74,11 +76,18 @@ export default {
     }, 200);
   },
   methods: {
+    startTimer() {
+      setInterval(() => {
+        if (!this.isPlaying) return;
+        this.time += 0.1;
+      }, 100);
+    },
     startGame() {
       this.isPlaying = true;
       this.snake = [{ x: 10, y: 10 }];
       this.score = 0;
       this.generateFood();
+      this.startTimer();
     },
     stopGame() {
       this.isPlaying = false;
@@ -158,6 +167,9 @@ export default {
       }
       return false;
     },
+    formatTime(seconds) {
+      return parseFloat(seconds.toFixed(2))
+    }
   },
 };
 </script>

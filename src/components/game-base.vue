@@ -55,7 +55,7 @@
           </div>
           <transition-group name="list" tag="ul">
             <li v-for="(record, index) in sortedRecords()" :key="index">
-              {{ record.name }} - {{ record.score }} point/s in ({{ record.time }}s)
+              <p class="text-start">{{ record.name }} - {{ record.score }} point/s in ({{ record.time }}s)</p>
             </li>
           </transition-group>
         </div>

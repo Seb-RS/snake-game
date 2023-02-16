@@ -1,5 +1,5 @@
 <template>
-  <div
+  <div :class="smallWindow() ? 'p-8' : 'p12'"
     class="flex flex-col justify-center items-center bg-black w-screen h-screen p-12 text-green-500 overflow-x-hidden"
   >
     <div
@@ -17,8 +17,8 @@
         <canvas
           class="border border-green-500 m-auto block shadow-green-500 shadow-md"
           ref="canvas"
-          width="300"
-          height="300"
+          :width="smallWindow() ? '220' : '300' "
+          :height="smallWindow() ? '220' : '300' "
         ></canvas>
         <div
           class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-40 h-20"
@@ -80,18 +80,31 @@ export default {
       score: 0,
       gameLoop: null,
       isPlaying: false,
-      gridSize: 15,
+      gridSize: 7,
       cellCountX: 0,
       cellCountY: 0,
       time: 0.0,
       records: [],
+      windowWidth: window.innerWidth,
+      loaded: false
     };
   },
   mounted() {
+    window.addEventListener('resize', this.handleResize)
+
+    if(this.windowWidth < 300 )
+    this.gridSize = 11
+    else
+    this.gridSize = 15
+
     this.context = this.$refs.canvas.getContext("2d");
     this.cellCountX = this.$refs.canvas.width / this.gridSize;
     this.cellCountY = this.$refs.canvas.height / this.gridSize;
     this.startTimer();
+    this.loaded=true
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.handleResize)
   },
   created() {
     if (this.isPlaying) this.direction = "right";
@@ -133,6 +146,9 @@ export default {
   methods: {
     sortedRecords() {
       return this.records.sort((a, b) => b.score - a.score);
+    },
+    smallWindow(){
+      return this.windowWidth < 300 ? true : false;
     },
     startTimer() {
       setInterval(() => {
@@ -224,6 +240,9 @@ export default {
         }
       }
       return false;
+    },
+    handleResize() {
+      this.windowWidth = window.innerWidth
     },
     formatTime(seconds) {
       return parseFloat(seconds.toFixed(2));

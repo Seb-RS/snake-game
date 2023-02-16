@@ -18,7 +18,20 @@
         class="flex flex-col w-full h-full justify-center items-center text-3xl md:text-5xl lg:text-8xl text-center font-bold"
       >
         <h1>Welcome</h1>
-        {{ username }}
+        <span class="flex">
+          <p
+            v-motion
+            :initial="{ opacity: 0, x: 100 }"
+            :enter="{ opacity: 1, x: 0, scale: 1 }"
+            :delay="200"
+          >
+            {{ username }}
+          </p>
+          <p v-motion
+            :initial="{ opacity: 0, x: 100 }"
+            :enter="{ opacity: 1, x: 0, scale: 1 }"
+            :delay="400" class="ml-7">:)</p>
+        </span>
       </div>
     </transition>
   </div>
@@ -57,5 +70,7 @@ export default {
   opacity: 0;
 }
 
-input:focus { outline: none; }
+input:focus {
+  outline: none;
+}
 </style>

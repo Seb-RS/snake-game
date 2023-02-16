@@ -6,8 +6,10 @@
       <p>Use the arrow keys to move the snake.</p>
       <p>Don't run into the walls or yourself!</p>
     </div>
-    <button @click="startGame" :disabled="isPlaying">Start Game</button>
-    <button @click="stopGame" :disabled="!isPlaying">Stop Game</button>
+    <button v-if="!isPlaying" id="start-game" @click="startGame" :disabled="isPlaying">
+      {{ gameOver ? "Restart Game" : "Start Game" }}
+    </button>
+    <h1 v-if="!isPlaying && gameOver" id="game-over">GAME OVER</h1>
   </div>
 </template>
 
@@ -16,8 +18,10 @@ export default {
   data() {
     return {
       context: null,
-      snake: [{ x: 10, y: 10 }],
+      snake: [{ x: 0, y: 0 }],
       direction: "right",
+      canChangeDirection: true,
+      gameOver: false,
       food: { x: 0, y: 0 },
       score: 0,
       gameLoop: null,
@@ -36,34 +40,38 @@ export default {
     if (this.isPlaying) this.direction = "right";
 
     document.addEventListener("keydown", (event) => {
-      let newDirection;
-      switch (event.key) {
-        case "ArrowUp":
-          newDirection = "up";
-          break;
-        case "ArrowDown":
-          newDirection = "down";
-          break;
-        case "ArrowLeft":
-          newDirection = "left";
-          break;
-        case "ArrowRight":
-          newDirection = "right";
-          break;
+      if (this.canChangeDirection && this.isPlaying) {
+        switch (event.key) {
+          case "ArrowUp":
+            if (this.direction !== "down") {
+              this.direction = "up";
+            }
+            break;
+          case "ArrowDown":
+            if (this.direction !== "up") {
+              this.direction = "down";
+            }
+            break;
+          case "ArrowLeft":
+            if (this.direction !== "right") {
+              this.direction = "left";
+            }
+            break;
+          case "ArrowRight":
+            if (this.direction !== "left") {
+              this.direction = "right";
+            }
+            break;
+        }
+        this.canChangeDirection = false;
       }
-
-      if (
-        (newDirection === "up" && this.direction === "down") ||
-        (newDirection === "down" && this.direction === "up") ||
-        (newDirection === "left" && this.direction === "right") ||
-        (newDirection === "right" && this.direction === "left") ||
-        this.isPlaying == false
-      ) {
-        return;
-      }
-
-      this.direction = newDirection;
     });
+
+    setInterval(() => {
+      if (!this.isPlaying) return;
+      this.canChangeDirection = true;
+      this.moveSnake();
+    }, 200);
   },
   methods: {
     startGame() {
@@ -71,10 +79,10 @@ export default {
       this.snake = [{ x: 10, y: 10 }];
       this.score = 0;
       this.generateFood();
-      this.gameLoop = setInterval(this.moveSnake, 200);
     },
     stopGame() {
       this.isPlaying = false;
+      this.gameOver = true;
       clearInterval(this.gameLoop);
     },
     moveSnake() {
@@ -115,23 +123,23 @@ export default {
       this.food = { x: foodX, y: foodY };
     },
     drawCanvas() {
-      this.context.clearRect(0, 0, this.$refs.canvas.width, this.$refs.canvas.height)
-      this.context.fillStyle = 'green'
+      this.context.clearRect(0, 0, this.$refs.canvas.width, this.$refs.canvas.height);
+      this.context.fillStyle = "green";
       for (let i = 0; i < this.snake.length; i++) {
         this.context.fillRect(
           this.snake[i].x * this.gridSize,
           this.snake[i].y * this.gridSize,
           this.gridSize,
           this.gridSize
-        )
+        );
       }
-      this.context.fillStyle = 'red'
+      this.context.fillStyle = "red";
       this.context.fillRect(
         this.food.x * this.gridSize,
         this.food.y * this.gridSize,
         this.gridSize,
         this.gridSize
-      )
+      );
     },
     checkCollision(newHead) {
       if (
@@ -177,16 +185,11 @@ canvas {
   color: green;
 }
 
-#start-button {
-  display: block;
-  margin: 10px auto;
-  padding: 10px 20px;
-  background-color: #0f0;
-  color: black;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  box-shadow: 0 0 10px green, 0 0 20px green;
+#start-game {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #game-over {
@@ -195,6 +198,10 @@ canvas {
   font-size: 24px;
   font-weight: bold;
   color: #dc3545;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .matrix-style {

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col justify-center items-center bg-black w-screen h-screen p-12 text-green-500"
+    class="flex flex-col justify-center items-center bg-black w-screen h-screen p-12 text-green-500 overflow-x-hidden"
   >
     <div class="flex flex-col mx-auto">
       <div class="flex-col w-full h-max justify-start items-center mb-1">
@@ -110,7 +110,7 @@ export default {
     startGame() {
       this.isPlaying = true;
       this.snake = [{ x: 10, y: 10 }];
-      this.score = 0;
+      this.clearData();
       this.generateFood();
       this.startTimer();
     },
@@ -194,6 +194,11 @@ export default {
     },
     formatTime(seconds) {
       return parseFloat(seconds.toFixed(2));
+    },
+    clearData()
+    {
+      this.score = 0;
+      this.time = 0;
     },
   },
 };

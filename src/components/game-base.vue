@@ -1,7 +1,7 @@
 <template>
   <div
     :class="smallWindow() ? 'p-0' : 'p-0 lg:p-12'"
-    class="flex flex-col justify-center items-center bg-black w-screen h-screen p-12 text-green-500 overflow-x-hidden"
+    class="flex flex-col justify-center items-center bg-black w-screen min-h-screen max-h-max p-12 text-green-500 overflow-x-hidden"
   >
     <div
       class="flex flex-col mx-auto"
@@ -67,18 +67,18 @@
       >
         <p>Use the arrow keys to move the snake.</p>
         <p>Don't run into the walls or yourself!</p>
-        <h1 v-if="records != null" class="text-md font-bold">Récords</h1>
+        <h1 v-if="records != null" class="text-md font-bold">Top 5</h1>
         <div
           v-if="records != null"
           class="flex flex-col justify-start items-start w-full h-32 overflow-y-auto font-normal"
         >
-          <transition-group name="list" tag="ul">
-            <li v-for="(record, index) in sortedRecords()" :key="index">
+        <ul>
+          <li v-for="(record, index) in sortedRecords()" :key="index">
               <p class="text-start">
                 {{ record.name }} - {{ record.score }} point/s in ({{ record.time }}s)
               </p>
             </li>
-          </transition-group>
+        </ul>
         </div>
       </div>
     </div>
@@ -310,22 +310,5 @@ export default {
   border-radius: 10px;
   background-color: rgb(34 197 94 / 1);
   -webkit-box-shadow: inset 0 0 6px rgba(57, 56, 56, 0.878);
-}
-
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s;
-}
-
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateY(-20px);
-}
-
-.list-enter-to,
-.list-leave-from {
-  opacity: 1;
-  transform: translateY(0);
 }
 </style>

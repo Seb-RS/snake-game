@@ -123,10 +123,17 @@ export default {
       records: [],
       windowWidth: window.innerWidth,
       loaded: false,
+      isTouchDevice: true,
       joystick: null,
     };
   },
   async mounted() {
+    if ("ontouchstart" in window) {
+      this.isTouchDevice = true;
+    } else {
+      this.isTouchDevice = false;
+    }
+
     this.records = [];
 
     if (localStorage.records) {
@@ -139,39 +146,43 @@ export default {
       color: "green",
       preventDefault: false,
     };
-    this.joystick = nipplejs.create(options);
 
-    this.joystick.on("plain", (evt, data) => {
-      if (!this.isPlaying) this.startGame();
+    if (this.isTouchDevice) {
+      this.joystick = nipplejs.create(options);
 
-      console.log(data)
-      var direction = data.direction.angle;
+      this.joystick.on("plain", (evt, data) => {
+        if (!this.isPlaying) this.startGame();
 
-      if (this.canChangeDirection && this.isPlaying) {
-        if (direction == "up") {
-          if (this.direction !== "down") {
-            this.direction = "up";
-          }
-        }
-        if (direction == "down") {
-          if (this.direction !== "up") {
-            this.direction = "down";
-          }
-        }
-        if (direction == "left") {
-          if (this.direction !== "right") {
-            this.direction = "left";
-          }
-        }
+        console.log(data);
+        var direction = data.direction.angle;
 
-        if (direction == "right") {
-          if (this.direction !== "left") {
-            this.direction = "right";
+        if (this.canChangeDirection && this.isPlaying) {
+          if (direction == "up") {
+            if (this.direction !== "down") {
+              this.direction = "up";
+            }
           }
+          if (direction == "down") {
+            if (this.direction !== "up") {
+              this.direction = "down";
+            }
+          }
+          if (direction == "left") {
+            if (this.direction !== "right") {
+              this.direction = "left";
+            }
+          }
+
+          if (direction == "right") {
+            if (this.direction !== "left") {
+              this.direction = "right";
+            }
+          }
+          this.canChangeDirection = false;
         }
-        this.canChangeDirection = false;
-      }
-    });
+      });
+    }
+
     window.addEventListener("resize", this.handleResize);
 
     if (this.windowWidth < 300) this.gridSize = 11;

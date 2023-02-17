@@ -171,7 +171,14 @@ export default {
   },
   methods: {
     sortedRecords() {
-      if (this.records != null) return this.records.sort((a, b) => b.score - a.score);
+      if (this.records != null)
+        return this.records.sort((a, b) => {
+          if (a.score !== b.score) {
+            return b.score - a.score;
+          }
+
+          return a.time - b.time;
+        });
     },
     smallWindow() {
       return this.windowWidth < 300 ? true : false;
@@ -282,6 +289,19 @@ export default {
         time: this.formatTime(this.time),
         score: this.score,
       });
+
+      this.records.sort((a, b) => {
+        if (a.score !== b.score) {
+          return b.score - a.score;
+        }
+
+        return a.time - b.time;
+      });
+
+      var newRecord = this.records[this.records.length - 1];
+      if (this.records.indexOf(newRecord) >= 5) {
+        this.records.pop();
+      }
 
       localStorage.records = JSON.stringify(this.records);
     },

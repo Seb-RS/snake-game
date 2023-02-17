@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-screen h-screen bg-black">
+  <div class="flex w-screen h-screen bg-black fonted">
     <div
       :class="smallWindow() ? 'p-0' : 'p-0 lg:p-12'"
       class="flex flex-col justify-center items-center w-full h-full p-12 text-green-500 overflow-x-hidden"

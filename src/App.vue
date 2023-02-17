@@ -29,8 +29,24 @@ export default {
       }
     },
     setGame() {
-      this.gameMain = false
+      this.gameMain = false;
     },
   },
 };
 </script>
+
+<style>
+body {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.fonted {
+  font-family: "Nunito", sans-serif;
+}
+</style>

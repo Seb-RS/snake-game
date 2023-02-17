@@ -60,6 +60,8 @@ export default {
     };
   },
   mounted() {
+    this.effect = false;
+    this.registred = false;
     if (localStorage.username) {
       this.username = localStorage.username;
       this.$emit("setUsername", this.username);

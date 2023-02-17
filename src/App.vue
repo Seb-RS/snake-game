@@ -1,7 +1,7 @@
 <template>
   <div>
     <enterName v-if="!gameMain" @setUsername="setUsername($event)"></enterName>
-    <game-base v-else :username="username"></game-base>
+    <game-base v-else :username="username" @state="setGame($event)"></game-base>
   </div>
 </template>
 
@@ -27,6 +27,9 @@ export default {
           this.gameMain = true;
         }, 2000);
       }
+    },
+    setGame() {
+      this.gameMain = false
     },
   },
 };

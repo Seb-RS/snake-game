@@ -337,7 +337,6 @@ export default {
       localStorage.records = JSON.stringify(this.records);
     },
     setGame() {
-      this.joystick.destroy();
       localStorage.removeItem("username");
       this.$emit("state");
     },

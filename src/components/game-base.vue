@@ -1,31 +1,6 @@
 <template>
   <div class="flex w-screen h-screen bg-black">
-    <div class="absoluto">
-      <div class="flex w-full h-max justify-between items-center mb-1">
-        <div class="flex-col text-green-500">
-          <p>Time: {{ formatTime(time) }}</p>
-          <p>Score: {{ score }}</p>
-        </div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="icon flat-color cursor-pointer h-4 w-4"
-          @click="setGame()"
-          data-name="Flat Color"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M19 20a1 1 0 0 1-1-1v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2h-1v1a1 1 0 0 1-1 1Z"
-            style="fill: #22c55e"
-          />
-          <path
-            d="M15 17a4 4 0 0 1 2.63-3.74 6 6 0 0 0-2.31-1.11 6 6 0 1 0-8.64 0A6 6 0 0 0 2 18v1a1 1 0 0 0 .29.71C2.53 19.94 4.77 22 11 22a17.17 17.17 0 0 0 6.88-1.18A4 4 0 0 1 15 17Z"
-            style="fill: #22c55e"
-          />
-        </svg>
-      </div>
-    </div>
     <div
-      id="dynamic"
       :class="smallWindow() ? 'p-0' : 'p-0 lg:p-12'"
       class="flex flex-col justify-center items-center w-full h-full p-12 text-green-500 overflow-x-hidden"
     >
@@ -38,6 +13,28 @@
       >
         <div>
           <div class="relative w-full">
+            <div class="flex w-full h-max justify-between items-center mb-1">
+              <div class="flex-col text-green-500">
+                <p>Time: {{ formatTime(time) }}</p>
+                <p>Score: {{ score }}</p>
+              </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon flat-color cursor-pointer h-4 w-4"
+                @click="setGame()"
+                data-name="Flat Color"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 20a1 1 0 0 1-1-1v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2h-1v1a1 1 0 0 1-1 1Z"
+                  style="fill: #22c55e"
+                />
+                <path
+                  d="M15 17a4 4 0 0 1 2.63-3.74 6 6 0 0 0-2.31-1.11 6 6 0 1 0-8.64 0A6 6 0 0 0 2 18v1a1 1 0 0 0 .29.71C2.53 19.94 4.77 22 11 22a17.17 17.17 0 0 0 6.88-1.18A4 4 0 0 1 15 17Z"
+                  style="fill: #22c55e"
+                />
+              </svg>
+            </div>
             <canvas
               class="border border-green-500 m-auto block shadow-green-500 shadow-md"
               ref="canvas"
@@ -69,6 +66,7 @@
           <div
             class="flex flex-col w-full justify-center items-start mt-2 text-center text-green-700 font-extralight"
           >
+            <joystick-controller v-if="isTouchDevice" @keyPressed="keyPressed($event)"></joystick-controller>
             <p>Use the arrow keys to move the snake.</p>
             <p>Don't run into the walls or yourself!</p>
             <h1 v-if="records.length > 0" class="text-md font-bold">Top 5</h1>
@@ -99,10 +97,14 @@
 </template>
 
 <script>
-import nipplejs from "nipplejs";
+import joystickController from "./joystick-controller.vue";
+
 export default {
   props: {
     username: String,
+  },
+  components: {
+    joystickController,
   },
   data() {
     return {
@@ -123,10 +125,9 @@ export default {
       windowWidth: window.innerWidth,
       loaded: false,
       isTouchDevice: true,
-      joystick: null,
     };
   },
-  async mounted() {
+  mounted() {
     if ("ontouchstart" in window) {
       this.isTouchDevice = true;
     } else {
@@ -137,48 +138,6 @@ export default {
 
     if (localStorage.records) {
       this.records = JSON.parse(localStorage.records);
-    }
-
-    const options = {
-      zone: document.getElementById("dynamic"),
-      mode: "dynamic",
-      color: "green",
-      preventDefault: false,
-    };
-
-    if (this.isTouchDevice) {
-      this.joystick = nipplejs.create(options);
-
-      this.joystick.on("plain", (evt, data) => {
-        if (!this.isPlaying) this.startGame();
-
-        var direction = data.direction.angle;
-
-        if (this.canChangeDirection && this.isPlaying) {
-          if (direction == "up") {
-            if (this.direction !== "down") {
-              this.direction = "up";
-            }
-          }
-          if (direction == "down") {
-            if (this.direction !== "up") {
-              this.direction = "down";
-            }
-          }
-          if (direction == "left") {
-            if (this.direction !== "right") {
-              this.direction = "left";
-            }
-          }
-
-          if (direction == "right") {
-            if (this.direction !== "left") {
-              this.direction = "right";
-            }
-          }
-          this.canChangeDirection = false;
-        }
-      });
     }
 
     window.addEventListener("resize", this.handleResize);
@@ -396,6 +355,33 @@ export default {
       const timePerScore = this.formatTime(time / score);
       return timePerScore;
     },
+    keyPressed(data){
+      var direction = data;
+      if (this.canChangeDirection && this.isPlaying) {
+          if (direction == "up") {
+            if (this.direction !== "down") {
+              this.direction = "up";
+            }
+          }
+          if (direction == "down") {
+            if (this.direction !== "up") {
+              this.direction = "down";
+            }
+          }
+          if (direction == "left") {
+            if (this.direction !== "right") {
+              this.direction = "left";
+            }
+          }
+
+          if (direction == "right") {
+            if (this.direction !== "left") {
+              this.direction = "right";
+            }
+          }
+          this.canChangeDirection = false;
+        }
+    }
   },
 };
 </script>

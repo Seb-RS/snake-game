@@ -31,7 +31,7 @@
             v-motion
             :initial="{ opacity: 0, x: 100 }"
             :enter="{ opacity: 1, x: 0, scale: 1 }"
-            :delay="registred? 500 : 200"
+            :delay="registred? 700 : 200"
           >
             {{ username }}
           </p>
@@ -39,7 +39,7 @@
             v-motion
             :initial="{ opacity: 0, x: 100 }"
             :enter="{ opacity: 1, x: 0, scale: 1 }"
-            :delay="registred? 600:300"
+            :delay="registred? 900:400"
             class="ml-2 md:ml-4 lg:ml-7"
           >
             :)

@@ -75,8 +75,9 @@
         >
           <ul>
             <li v-for="(record, index) in sortedRecords()" :key="index">
-              <span class="flex text-start">
-              <p class="font-bold mr-4">{{ numberToOrdinal(index+1) }}.</p>  {{ record.name }} - {{ record.score }} point/s in ({{ record.time }}s)
+              <span class="flex text-start" :title="`${calculateTimePerScore(record.score, record.time)}s per point`">
+                <p class="font-bold mr-4">{{ numberToOrdinal(index + 1) }}.</p>
+                {{ record.name }} - {{ record.score }} point/s in ({{ record.time }}s)
               </span>
             </li>
           </ul>
@@ -318,6 +319,10 @@ export default {
       const suffix = n % 100;
 
       return `${n}${suffixes[(suffix - 20) % 10] || suffixes[suffix] || suffixes[0]}`;
+    },
+    calculateTimePerScore(score, time) {
+      const timePerScore = this.formatTime(time / score);
+      return timePerScore;
     },
   },
 };

@@ -68,16 +68,16 @@
       >
         <p>Use the arrow keys to move the snake.</p>
         <p>Don't run into the walls or yourself!</p>
-        <h1 v-if="records != null" class="text-md font-bold">Top 5</h1>
+        <h1 v-if="records.length > 0" class="text-md font-bold">Top 5</h1>
         <div
-          v-if="records != null"
+          v-if="records.length > 0"
           class="flex flex-col justify-start items-start w-full h-32 overflow-y-auto font-normal"
         >
           <ul>
             <li v-for="(record, index) in sortedRecords()" :key="index">
-              <p class="text-start">
-                {{ record.name }} - {{ record.score }} point/s in ({{ record.time }}s)
-              </p>
+              <span class="flex text-start">
+              <p class="font-bold mr-4">{{ numberToOrdinal(index+1) }}.</p>  {{ record.name }} - {{ record.score }} point/s in ({{ record.time }}s)
+              </span>
             </li>
           </ul>
         </div>
@@ -308,6 +308,16 @@ export default {
     setGame() {
       localStorage.removeItem("username");
       this.$emit("state");
+    },
+    numberToOrdinal(n) {
+      if (isNaN(n) || !isFinite(n)) {
+        return "";
+      }
+
+      const suffixes = ["th", "st", "nd", "rd"];
+      const suffix = n % 100;
+
+      return `${n}${suffixes[(suffix - 20) % 10] || suffixes[suffix] || suffixes[0]}`;
     },
   },
 };

@@ -36,6 +36,12 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "EXEPixelPerfect";
+  src: local("EXEPixelPerfect"),
+    url('@/assets/fonts/EXEPixelPerfect.ttf') format("truetype");
+}
+
 body {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -44,9 +50,6 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-.fonted {
-  font-family: "Nunito", sans-serif;
+  font-family: "EXEPixelPerfect", Helvetica, Arial;
 }
 </style>

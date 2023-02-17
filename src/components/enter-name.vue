@@ -25,13 +25,13 @@
         v-if="effect"
         class="flex flex-col w-full h-full justify-center items-center text-3xl md:text-5xl lg:text-8xl text-center font-bold"
       >
-        <h1>Welcome</h1>
+        <h1>Welcome{{ registred ? " back" : "" }}</h1>
         <span class="flex">
           <p
             v-motion
             :initial="{ opacity: 0, x: 100 }"
             :enter="{ opacity: 1, x: 0, scale: 1 }"
-            :delay="200"
+            :delay="registred? 500 : 200"
           >
             {{ username }}
           </p>
@@ -39,7 +39,7 @@
             v-motion
             :initial="{ opacity: 0, x: 100 }"
             :enter="{ opacity: 1, x: 0, scale: 1 }"
-            :delay="400"
+            :delay="registred? 600:300"
             class="ml-2 md:ml-4 lg:ml-7"
           >
             :)
@@ -56,12 +56,22 @@ export default {
     return {
       username: null,
       effect: false,
+      registred: false,
     };
+  },
+  mounted() {
+    if (localStorage.username) {
+      this.username = localStorage.username;
+      this.$emit("setUsername", this.username);
+      this.effect = true;
+      this.registred = true;
+    }
   },
   methods: {
     submitForm() {
       if (this.empty(this.username)) return;
 
+      localStorage.username = this.username;
       this.$emit("setUsername", this.username);
       this.effect = true;
     },

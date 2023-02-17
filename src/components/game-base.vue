@@ -1,5 +1,6 @@
 <template>
-  <div :class="smallWindow() ? 'p-8' : 'p-12'"
+  <div
+    :class="smallWindow() ? 'p-8' : 'p-12'"
     class="flex flex-col justify-center items-center bg-black w-screen h-screen p-12 text-green-500 overflow-x-hidden"
   >
     <div
@@ -17,8 +18,8 @@
         <canvas
           class="border border-green-500 m-auto block shadow-green-500 shadow-md"
           ref="canvas"
-          :width="smallWindow() ? '220' : '300' "
-          :height="smallWindow() ? '220' : '300' "
+          :width="smallWindow() ? '220' : '300'"
+          :height="smallWindow() ? '220' : '300'"
         ></canvas>
         <div
           class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-40 h-20"
@@ -48,14 +49,17 @@
         <p>Use the arrow keys to move the snake.</p>
         <p>Don't run into the walls or yourself!</p>
         <div
+          v-if="records != null"
           class="flex flex-col justify-start items-start w-full h-32 overflow-y-auto font-normal"
         >
-          <div v-if="records.length > 0" class="decoration-slice decoration-slate-400">
+          <div class="decoration-slice decoration-slate-400">
             <h1 class="text-md font-bold">Récords</h1>
           </div>
           <transition-group name="list" tag="ul">
             <li v-for="(record, index) in sortedRecords()" :key="index">
-              <p class="text-start">{{ record.name }} - {{ record.score }} point/s in ({{ record.time }}s)</p>
+              <p class="text-start">
+                {{ record.name }} - {{ record.score }} point/s in ({{ record.time }}s)
+              </p>
             </li>
           </transition-group>
         </div>
@@ -86,25 +90,31 @@ export default {
       time: 0.0,
       records: [],
       windowWidth: window.innerWidth,
-      loaded: false
+      loaded: false,
     };
   },
   mounted() {
-    window.addEventListener('resize', this.handleResize)
+    this.records = [];
 
-    if(this.windowWidth < 300 )
-    this.gridSize = 11
-    else
-    this.gridSize = 15
+    if (localStorage.records) {
+      this.records = JSON.parse(localStorage.records);
+    }
+
+    console.log(this.records);
+
+    window.addEventListener("resize", this.handleResize);
+
+    if (this.windowWidth < 300) this.gridSize = 11;
+    else this.gridSize = 15;
 
     this.context = this.$refs.canvas.getContext("2d");
     this.cellCountX = this.$refs.canvas.width / this.gridSize;
     this.cellCountY = this.$refs.canvas.height / this.gridSize;
     this.startTimer();
-    this.loaded=true
+    this.loaded = true;
   },
   beforeUnmount() {
-    window.removeEventListener('resize', this.handleResize)
+    window.removeEventListener("resize", this.handleResize);
   },
   created() {
     if (this.isPlaying) this.direction = "right";
@@ -145,9 +155,9 @@ export default {
   },
   methods: {
     sortedRecords() {
-      return this.records.sort((a, b) => b.score - a.score);
+      if (this.records != null) return this.records.sort((a, b) => b.score - a.score);
     },
-    smallWindow(){
+    smallWindow() {
       return this.windowWidth < 300 ? true : false;
     },
     startTimer() {
@@ -242,7 +252,7 @@ export default {
       return false;
     },
     handleResize() {
-      this.windowWidth = window.innerWidth
+      this.windowWidth = window.innerWidth;
     },
     formatTime(seconds) {
       return parseFloat(seconds.toFixed(2));
@@ -257,6 +267,8 @@ export default {
         time: this.formatTime(this.time),
         score: this.score,
       });
+
+      localStorage.records = JSON.stringify(this.records);
     },
   },
 };

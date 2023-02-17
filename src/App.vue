@@ -23,7 +23,7 @@ export default {
     setUsername(value) {
       if (value != null) {
         this.username = value;
-        setInterval(() => {
+        setTimeout(() => {
           this.gameMain = true;
         }, 2000);
       }

@@ -17,7 +17,7 @@
         maxlength="15"
         type="text"
         class="w-full bg-transparent h-full rounded py-2 px-3 text-3xl md:text-5xl lg:text-8xl text-center font-bold text-green-500 placeholder-green-800"
-        placeholder="Enter Your Name"
+        placeholder="Enter your name"
       />
     </form>
     <transition class="h-full w-full">

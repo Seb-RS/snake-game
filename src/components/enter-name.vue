@@ -3,7 +3,12 @@
     :class="effect ? 'bg-green-500' : 'bg-black'"
     class="h-screen flex flex-col w-full items-center justify-center"
   >
-    <form v-if="!effect" @submit.prevent="submitForm" :class="effect ? 'invisible' : ''">
+    <form v-if="!effect" @submit.prevent="submitForm" :class="effect ? 'invisible' : ''"
+    v-motion
+            :initial="{ opacity: 0, x: 100 }"
+            :enter="{ opacity: 1, x: 0, scale: 1 }"
+            :delay="200"
+    >
       <input
         v-model="username"
         maxlength="15"

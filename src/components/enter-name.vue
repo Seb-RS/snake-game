@@ -7,8 +7,7 @@
     v-motion
             :initial="{ opacity: 0, x: 100 }"
             :enter="{ opacity: 1, x: 0, scale: 1 }"
-            :delay="200"
-    >
+            :delay="200">
       <input
         v-model="username"
         maxlength="15"

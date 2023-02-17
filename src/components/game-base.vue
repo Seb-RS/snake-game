@@ -67,13 +67,11 @@
       >
         <p>Use the arrow keys to move the snake.</p>
         <p>Don't run into the walls or yourself!</p>
+        <h1 v-if="records != null" class="text-md font-bold">Récords</h1>
         <div
           v-if="records != null"
           class="flex flex-col justify-start items-start w-full h-32 overflow-y-auto font-normal"
         >
-          <div class="decoration-slice decoration-slate-400">
-            <h1 class="text-md font-bold">Récords</h1>
-          </div>
           <transition-group name="list" tag="ul">
             <li v-for="(record, index) in sortedRecords()" :key="index">
               <p class="text-start">

@@ -40,7 +40,7 @@
             :initial="{ opacity: 0, x: 100 }"
             :enter="{ opacity: 1, x: 0, scale: 1 }"
             :delay="400"
-            class="ml-7"
+            class="ml-2 md:ml-4 lg:ml-7"
           >
             :)
           </p>

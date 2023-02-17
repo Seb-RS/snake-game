@@ -61,9 +61,8 @@
                   @click="startGame"
                   :disabled="isPlaying"
                 >
-                  {{ gameOver ? "Restart Game" : "Start Game" }}
+                  {{ buttonMessage }}
                 </button>
-                  <p>P</p>
               </div>
             </div>
           </div>
@@ -233,6 +232,15 @@ export default {
       this.canChangeDirection = true;
       this.moveSnake();
     }, 200);
+  },
+  computed: {
+    buttonMessage() {
+      if (this.gameOver) {
+        return "Restart Game";
+      } else {
+        return this.isTouchDevice ? "Tap to start" : "Start Game";
+      }
+    }
   },
   methods: {
     sortedRecords() {

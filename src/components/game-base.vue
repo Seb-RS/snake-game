@@ -18,7 +18,8 @@
         <div class="w-5 h-5">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="icon flat-color cursor-pointer" @click="setGame()"
+            class="icon flat-color cursor-pointer"
+            @click="setGame()"
             data-name="Flat Color"
             viewBox="0 0 24 24"
           >
@@ -72,13 +73,13 @@
           v-if="records != null"
           class="flex flex-col justify-start items-start w-full h-32 overflow-y-auto font-normal"
         >
-        <ul>
-          <li v-for="(record, index) in sortedRecords()" :key="index">
+          <ul>
+            <li v-for="(record, index) in sortedRecords()" :key="index">
               <p class="text-start">
                 {{ record.name }} - {{ record.score }} point/s in ({{ record.time }}s)
               </p>
             </li>
-        </ul>
+          </ul>
         </div>
       </div>
     </div>
@@ -284,10 +285,10 @@ export default {
 
       localStorage.records = JSON.stringify(this.records);
     },
-    setGame(){
-      localStorage.removeItem('username');
+    setGame() {
+      localStorage.removeItem("username");
       this.$emit("state");
-    }
+    },
   },
 };
 </script>

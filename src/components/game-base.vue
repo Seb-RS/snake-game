@@ -152,7 +152,6 @@ export default {
       this.joystick.on("plain", (evt, data) => {
         if (!this.isPlaying) this.startGame();
 
-        console.log(data);
         var direction = data.direction.angle;
 
         if (this.canChangeDirection && this.isPlaying) {
@@ -240,7 +239,7 @@ export default {
       } else {
         return this.isTouchDevice ? "Tap to start" : "Start Game";
       }
-    }
+    },
   },
   methods: {
     sortedRecords() {

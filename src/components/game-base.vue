@@ -191,7 +191,6 @@ export default {
       this.isPlaying = false;
       this.gameOver = true;
       this.addRecord(this.username, this.time, this.score);
-      clearInterval(this.gameLoop);
     },
     moveSnake() {
       let newHead = { x: this.snake[0].x, y: this.snake[0].y };

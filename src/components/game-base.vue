@@ -126,8 +126,6 @@ export default {
     };
   },
   mounted() {
-    localStorage.removeItem("records");
-
     if ("ontouchstart" in window) {
       this.isTouchDevice = true;
     } else {

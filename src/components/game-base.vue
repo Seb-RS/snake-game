@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-w-full h-full w-full flex items-center justify-start bg-black overflow-x-hidden text-green-500"
+    class="min-w-full h-full w-full flex items-center justify-start bg-black text-green-500"
   >
     <div :class="smallWindow() ? 'w-[220]' : 'w-[300px]'" class="mx-auto">
       <div
@@ -66,7 +66,7 @@
             v-if="isTouchDevice"
             @keyPressed="keyPressed($event)"
           ></joystick-controller>
-          <p>Use the arrow keys to move the snake.</p>
+          <p class="mt-1">Use the arrow keys to move the snake.</p>
           <p>Don't run into the walls or yourself!</p>
           <div
             :class="records.length > 0 ? 'visible' : 'invisible'"

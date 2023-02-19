@@ -82,7 +82,7 @@
                     record.time
                   )}s per point`"
                 >
-                  <p class="font-bold mr-4">{{ numberToOrdinal(index + 1) }}.</p>
+                  <p class="font-bold w-5">{{ numberToOrdinal(index + 1) }}.</p>
                   {{ record.name }} - {{ record.score }} point/s in ({{ record.time }}s)
                 </span>
               </li>

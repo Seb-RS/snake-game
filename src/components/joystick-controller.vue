@@ -2,89 +2,68 @@
   <div class="flex items-center justify-center w-full h-full my-4">
     <div class="grid grid-cols-3">
       <div class="w-10 h-10"></div>
-      <div @click="keyPressed('up')"
-        class="flex justify-center items-center w-10 h-10 rounded-lg border-4 border-green-800 text-green-800 hover:border-green-900 hover:text-green-900"
+      <div
+        @click="keyPressed('up')"
+        class="flex justify-center items-center w-10 h-10 border-4 border-green-800 text-green-800 hover:border-green-900 hover:text-green-900"
       >
         <svg
+          fill="currentColor"
+          width="50"
+          height="50"
+          viewBox="0 0 22 22"
           xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          fill="none"
-          viewBox="0 0 24 24"
         >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-miterlimit="10"
-            stroke-width="1.5"
-            d="M12 18H9.33c-3.31 0-4.67-2.35-3.01-5.22l1.34-2.31L9 8.16c1.66-2.87 4.37-2.87 6.03 0l1.34 2.31 1.34 2.31c1.66 2.87.3 5.22-3.01 5.22H12Z"
-          />
+          <path d="M5 13V14H17V13H16V12H15V11H14V10H13V9H12V8H10V9H9V10H8V11H7V12H6V13" />
         </svg>
       </div>
       <div class="w-10 h-10"></div>
 
-      <div @click="keyPressed('left')"
-        class="flex justify-center items-center w-10 h-10 rounded-lg border-4 border-green-800 text-green-800 hover:border-green-900 hover:text-green-900"
+      <div
+        @click="keyPressed('left')"
+        class="flex justify-center items-center w-10 h-10 border-4 border-green-800 text-green-800 hover:border-green-900 hover:text-green-900"
       >
-        <svg class="-rotate-90"
+        <svg
+          class="-rotate-90"
+          fill="currentColor"
+          width="50"
+          height="50"
+          viewBox="0 0 22 22"
           xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          fill="none"
-          viewBox="0 0 24 24"
         >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-miterlimit="10"
-            stroke-width="1.5"
-            d="M12 18H9.33c-3.31 0-4.67-2.35-3.01-5.22l1.34-2.31L9 8.16c1.66-2.87 4.37-2.87 6.03 0l1.34 2.31 1.34 2.31c1.66 2.87.3 5.22-3.01 5.22H12Z"
-          />
+          <path d="M5 13V14H17V13H16V12H15V11H14V10H13V9H12V8H10V9H9V10H8V11H7V12H6V13" />
         </svg>
       </div>
       <div class="w-10 h-10"></div>
-      <div @click="keyPressed('right')"
-        class="flex justify-center items-center w-10 h-10 rounded-lg border-4 border-green-800 text-green-800 hover:border-green-900 hover:text-green-900"
+      <div
+        @click="keyPressed('right')"
+        class="flex justify-center items-center w-10 h-10 border-4 border-green-800 text-green-800 hover:border-green-900 hover:text-green-900"
       >
-        <svg class="rotate-90"
+      <svg
+          class="rotate-90"
+          fill="currentColor"
+          width="50"
+          height="50"
+          viewBox="0 0 22 22"
           xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          fill="none"
-          viewBox="0 0 24 24"
         >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-miterlimit="10"
-            stroke-width="1.5"
-            d="M12 18H9.33c-3.31 0-4.67-2.35-3.01-5.22l1.34-2.31L9 8.16c1.66-2.87 4.37-2.87 6.03 0l1.34 2.31 1.34 2.31c1.66 2.87.3 5.22-3.01 5.22H12Z"
-          />
+          <path d="M5 13V14H17V13H16V12H15V11H14V10H13V9H12V8H10V9H9V10H8V11H7V12H6V13" />
         </svg>
       </div>
 
       <div class="w-10 h-10"></div>
-      <div @click="keyPressed('down')"
-        class="flex justify-center items-center w-10 h-10 rounded-lg border-4 border-green-800 text-green-800 hover:border-green-900 hover:text-green-900"
+      <div
+        @click="keyPressed('down')"
+        class="flex justify-center items-center w-10 h-10 border-4 border-green-800 text-green-800 hover:border-green-900 hover:text-green-900"
       >
-        <svg class="rotate-180"
+      <svg
+          class="rotate-180"
+          fill="currentColor"
+          width="50"
+          height="50"
+          viewBox="0 0 22 22"
           xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          fill="none"
-          viewBox="0 0 24 24"
         >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-miterlimit="10"
-            stroke-width="1.5"
-            d="M12 18H9.33c-3.31 0-4.67-2.35-3.01-5.22l1.34-2.31L9 8.16c1.66-2.87 4.37-2.87 6.03 0l1.34 2.31 1.34 2.31c1.66 2.87.3 5.22-3.01 5.22H12Z"
-          />
+          <path d="M5 13V14H17V13H16V12H15V11H14V10H13V9H12V8H10V9H9V10H8V11H7V12H6V13" />
         </svg>
       </div>
       <div class="w-10 h-10"></div>
@@ -94,11 +73,10 @@
 
 <script>
 export default {
-    methods: {
-        keyPressed(key)
-        {  
-            this.$emit('keyPressed', key)
-        }
+  methods: {
+    keyPressed(key) {
+      this.$emit("keyPressed", key);
     },
-}
+  },
+};
 </script>

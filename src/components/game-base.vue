@@ -402,12 +402,4 @@ export default {
   background-color: rgb(34 197 94 / 1);
   -webkit-box-shadow: inset 0 0 6px rgba(57, 56, 56, 0.878);
 }
-
-.absoluto {
-  position: fixed;
-  top: 5vh;
-  left: 50vw;
-  transform: translate(-50%, -50%);
-  width: 300px;
-}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center w-full h-full my-4">
-    <div class="grid grid-cols-3">
+    <div class="grid grid-cols-3 gap-1">
       <div class="w-10 h-10"></div>
       <div
         @click="keyPressed('up')"

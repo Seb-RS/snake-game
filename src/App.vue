@@ -52,4 +52,8 @@ body {
   user-select: none;
   font-family: "EXEPixelPerfect", Helvetica, Arial;
 }
+
+* {
+  outline: 0;
+}
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div
-    class="min-w-full h-full w-full flex items-center justify-start bg-black text-green-500"
+    class="min-w-full min-h-screen w-full flex items-center justify-center bg-black text-green-500"
   >
-    <div :class="smallWindow() ? 'w-[220]' : 'w-[300px]'" class="mx-auto">
+    <div :class="smallWindow() ? 'w-[220]' : 'w-[300px]'" class="flex items-center mx-auto h-screen">
       <div
-        class="flex flex-col h-full"
+        class="mx-auto min-h-0 h-full md:h-max"
         v-motion
         :initial="{ opacity: 0, y: 100 }"
         :enter="{ opacity: 1, y: 0, scale: 1 }"
@@ -32,7 +32,7 @@
             />
           </svg>
         </div>
-        <div class="relative h-full w-full">
+        <div class="relative w-full">
           <canvas
             class="border border-green-500 m-auto block shadow-green-500 shadow-md"
             ref="canvas"

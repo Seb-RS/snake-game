@@ -63,7 +63,7 @@
           </div>
         </div>
         <div class="flex flex-col h-max w-full">
-          <joystick-controller
+          <joystick-controller :themeColor="themeColor"
             v-if="isTouchDevice"
             @keyPressed="keyPressed($event)"
           ></joystick-controller>
@@ -89,6 +89,7 @@
               </li>
             </ul>
           </div>
+          <button @click="setThemeColor()">cambiar color</button>
         </div>
       </div>
     </div>

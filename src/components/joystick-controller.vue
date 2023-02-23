@@ -4,7 +4,8 @@
       <div class="w-10 h-10"></div>
       <div
         @click="keyPressed('up')"
-        class="flex justify-center items-center w-10 h-10 border-4 border-green-800 text-green-800 hover:border-green-900 hover:text-green-900"
+        :class="themeColor === 0 ? 'border-green-800 text-green-800 hover:border-green-900 hover:text-green-900' : themeColor === 1 ? ' border-white text-white hover:border-gray-100 hover:text-gray-100' : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'"
+        class="flex justify-center items-center w-10 h-10 border-4 duration-1000"
       >
         <svg
           fill="currentColor"
@@ -20,7 +21,8 @@
 
       <div
         @click="keyPressed('left')"
-        class="flex justify-center items-center w-10 h-10 border-4 border-green-800 text-green-800 hover:border-green-900 hover:text-green-900"
+        :class="themeColor === 0 ? 'border-green-800 text-green-800 hover:border-green-900 hover:text-green-900' : themeColor === 1 ? ' border-white text-white hover:border-gray-100 hover:text-gray-100' : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'"
+        class="flex justify-center items-center w-10 h-10 border-4 duration-1000"
       >
         <svg
           class="-rotate-90"
@@ -36,9 +38,10 @@
       <div class="w-10 h-10"></div>
       <div
         @click="keyPressed('right')"
-        class="flex justify-center items-center w-10 h-10 border-4 border-green-800 text-green-800 hover:border-green-900 hover:text-green-900"
+        :class="themeColor === 0 ? 'border-green-800 text-green-800 hover:border-green-900 hover:text-green-900' : themeColor === 1 ? ' border-white text-white hover:border-gray-100 hover:text-gray-100' : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'"
+        class="flex justify-center items-center w-10 h-10 border-4 duration-1000"
       >
-      <svg
+        <svg
           class="rotate-90"
           fill="currentColor"
           width="50"
@@ -53,9 +56,10 @@
       <div class="w-10 h-10"></div>
       <div
         @click="keyPressed('down')"
-        class="flex justify-center items-center w-10 h-10 border-4 border-green-800 text-green-800 hover:border-green-900 hover:text-green-900"
+        :class="themeColor === 0 ? 'border-green-800 text-green-800 hover:border-green-900 hover:text-green-900' : themeColor === 1 ? ' border-white text-white hover:border-gray-100 hover:text-gray-100' : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'"
+        class="flex justify-center items-center w-10 h-10 border-4 duration-1000"
       >
-      <svg
+        <svg
           class="rotate-180"
           fill="currentColor"
           width="50"
@@ -73,6 +77,9 @@
 
 <script>
 export default {
+  props: {
+    themeColor: Number,
+  },
   methods: {
     keyPressed(key) {
       this.$emit("keyPressed", key);

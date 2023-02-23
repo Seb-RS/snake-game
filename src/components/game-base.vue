@@ -1,6 +1,6 @@
 <template>
-  <div
-    class="min-w-full min-h-screen w-full flex items-center justify-center bg-black text-green-500"
+  <div :class="themeColor === 0 ? 'text-green-500 bg-black' : themeColor === 1 ? ' bg-black text-white' : 'bg-white text-black'"
+    class="min-w-full min-h-screen w-full flex items-center justify-center duration-1000"
   >
     <div :class="smallWindow() ? 'w-[220]' : 'w-[300px]'" class="flex items-center mx-auto h-screen">
       <div
@@ -33,8 +33,8 @@
           </svg>
         </div>
         <div class="relative w-full">
-          <canvas
-            class="border border-green-500 m-auto block shadow-green-500 shadow-md"
+          <canvas :class="themeColor === 0 ? 'border-green-500 shadow-green-500' : themeColor === 1 ? 'border-white shadow-white' : 'border-black shadow-black'"
+            class="border m-auto block shadow-md duration-1000"
             ref="canvas"
             :width="smallWindow() ? '220' : '300'"
             :height="smallWindow() ? '220' : '300'"
@@ -100,6 +100,7 @@ import joystickController from "./joystick-controller.vue";
 export default {
   props: {
     username: String,
+    themeColor: Number
   },
   components: {
     joystickController,
@@ -268,7 +269,13 @@ export default {
     },
     drawCanvas() {
       this.context.clearRect(0, 0, this.$refs.canvas.width, this.$refs.canvas.height);
+      if(this.themeColor == 0)
       this.context.fillStyle = "green";
+      else if(this.themeColor == 1)
+      this.context.fillStyle = "white";
+      else
+      this.context.fillStyle = "black";
+
       for (let i = 0; i < this.snake.length; i++) {
         this.context.fillRect(
           this.snake[i].x * this.gridSize,
@@ -379,6 +386,9 @@ export default {
         this.canChangeDirection = false;
       }
     },
+    setThemeColor(){
+      this.$emit('setThemeColor')
+    }
   },
 };
 </script>

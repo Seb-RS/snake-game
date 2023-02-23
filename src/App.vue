@@ -1,7 +1,13 @@
 <template>
   <div class="flex items-center w-screen h-screen">
     <enterName v-if="!gameMain" @setUsername="setUsername($event)"></enterName>
-    <game-base v-else :username="username" @state="setGame($event)"></game-base>
+    <game-base
+      v-else
+      :username="username"
+      @state="setGame($event)"
+      @setThemeColor="setThemeColor($event)"
+      :themeColor="themeColor"
+    ></game-base>
   </div>
 </template>
 
@@ -17,6 +23,7 @@ export default {
     return {
       username: null,
       gameMain: false,
+      themeColor: 0, //0 = Mátrix, 1 = Dark, 2 = Light
     };
   },
   methods: {
@@ -31,6 +38,10 @@ export default {
     setGame() {
       this.gameMain = false;
     },
+    setThemeColor() {
+      if (this.themeColor != 2) this.themeColor++;
+      else this.themeColor = 0;
+    },
   },
 };
 </script>
@@ -39,7 +50,7 @@ export default {
 @font-face {
   font-family: "EXEPixelPerfect";
   src: local("EXEPixelPerfect"),
-    url('@/assets/fonts/EXEPixelPerfect.ttf') format("truetype");
+    url("@/assets/fonts/EXEPixelPerfect.ttf") format("truetype");
 }
 
 body {

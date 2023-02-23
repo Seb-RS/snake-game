@@ -16,19 +16,20 @@
             <p>Score: {{ score }}</p>
           </div>
           <svg
+            :class="themeColor === 0 ? 'fill-green-500' : themeColor === 1 ? ' fill-white' : 'fill-black'"
             xmlns="http://www.w3.org/2000/svg"
-            class="icon flat-color cursor-pointer h-4 w-4"
+            class="icon flat-color cursor-pointer h-4 w-4 duration-1000"
             @click="setGame()"
             data-name="Flat Color"
             viewBox="0 0 24 24"
           >
             <path
               d="M19 20a1 1 0 0 1-1-1v-1h-1a1 1 0 0 1 0-2h1v-1a1 1 0 0 1 2 0v1h1a1 1 0 0 1 0 2h-1v1a1 1 0 0 1-1 1Z"
-              style="fill: #22c55e"
+              fill="currentColor"
             />
             <path
               d="M15 17a4 4 0 0 1 2.63-3.74 6 6 0 0 0-2.31-1.11 6 6 0 1 0-8.64 0A6 6 0 0 0 2 18v1a1 1 0 0 0 .29.71C2.53 19.94 4.77 22 11 22a17.17 17.17 0 0 0 6.88-1.18A4 4 0 0 1 15 17Z"
-              style="fill: #22c55e"
+              fill="currentColor"
             />
           </svg>
         </div>

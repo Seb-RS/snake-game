@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center w-screen h-screen">
-    <enterName v-if="!gameMain" @setUsername="setUsername($event)"></enterName>
+    <enterName v-if="!gameMain" @setUsername="setUsername($event)" :themeColor="themeColor"></enterName>
     <game-base
       v-else
       :username="username"

@@ -1,6 +1,6 @@
 <template>
   <div
-    :class="effect ? 'bg-green-500' : 'bg-black'"
+    :class="bgThemeEffect"
     class="h-screen flex flex-col w-full items-center justify-center"
   >
     <form
@@ -16,13 +16,27 @@
         v-model="username"
         maxlength="15"
         type="text"
-        class="w-full bg-transparent h-full rounded py-2 px-3 text-3xl md:text-5xl lg:text-8xl text-center font-bold text-green-500 placeholder-green-800"
+        :class="
+          themeColor === 0
+            ? 'text-green-500 placeholder-green-800'
+            : themeColor === 1
+            ? ' text-black placeholder-gray-900'
+            : 'text-white placeholder-gray-100'
+        "
+        class="w-full bg-transparent h-full rounded py-2 px-3 text-3xl md:text-5xl lg:text-8xl text-center font-bold"
         placeholder="Enter your name"
       />
     </form>
     <transition class="h-full w-full">
       <div
         v-if="effect"
+        :class="
+          themeColor === 0
+            ? 'text-black'
+            : themeColor === 1
+            ? ' text-white'
+            : 'text-black '
+        "
         class="flex flex-col w-full h-full justify-center items-center text-3xl md:text-5xl lg:text-8xl text-center font-bold"
       >
         <h1>Welcome{{ registred ? " back" : "" }}</h1>
@@ -52,6 +66,9 @@
 
 <script>
 export default {
+  props: {
+    themeColor: Number,
+  },
   data() {
     return {
       username: null,
@@ -68,6 +85,13 @@ export default {
       this.effect = true;
       this.registred = true;
     }
+  },
+  computed: {
+    bgThemeEffect() {
+      if (this.themeColor == 0) return this.effect ? "bg-green-500" : "bg-black";
+      else if (this.themeColor == 1) return this.effect ? "bg-black" : "bg-white";
+      else return this.effect ? "bg-white" : "bg-black";
+    },
   },
   methods: {
     submitForm() {

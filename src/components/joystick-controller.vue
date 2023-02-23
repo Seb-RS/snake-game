@@ -4,7 +4,13 @@
       <div class="w-10 h-10"></div>
       <div
         @click="keyPressed('up')"
-        :class="themeColor === 0 ? 'border-green-800 text-green-800 hover:border-green-900 hover:text-green-900' : themeColor === 1 ? ' border-white text-white hover:border-gray-100 hover:text-gray-100' : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'"
+        :class="
+          themeColor === 0
+            ? 'border-green-800 text-green-800 hover:border-green-900 hover:text-green-900'
+            : themeColor === 1
+            ? ' border-white text-white hover:border-gray-100 hover:text-gray-100'
+            : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'
+        "
         class="flex justify-center items-center w-10 h-10 border-4 duration-1000"
       >
         <svg
@@ -21,7 +27,13 @@
 
       <div
         @click="keyPressed('left')"
-        :class="themeColor === 0 ? 'border-green-800 text-green-800 hover:border-green-900 hover:text-green-900' : themeColor === 1 ? ' border-white text-white hover:border-gray-100 hover:text-gray-100' : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'"
+        :class="
+          themeColor === 0
+            ? 'border-green-800 text-green-800 hover:border-green-900 hover:text-green-900'
+            : themeColor === 1
+            ? ' border-white text-white hover:border-gray-100 hover:text-gray-100'
+            : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'
+        "
         class="flex justify-center items-center w-10 h-10 border-4 duration-1000"
       >
         <svg
@@ -38,7 +50,13 @@
       <div class="w-10 h-10"></div>
       <div
         @click="keyPressed('right')"
-        :class="themeColor === 0 ? 'border-green-800 text-green-800 hover:border-green-900 hover:text-green-900' : themeColor === 1 ? ' border-white text-white hover:border-gray-100 hover:text-gray-100' : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'"
+        :class="
+          themeColor === 0
+            ? 'border-green-800 text-green-800 hover:border-green-900 hover:text-green-900'
+            : themeColor === 1
+            ? ' border-white text-white hover:border-gray-100 hover:text-gray-100'
+            : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'
+        "
         class="flex justify-center items-center w-10 h-10 border-4 duration-1000"
       >
         <svg
@@ -56,7 +74,13 @@
       <div class="w-10 h-10"></div>
       <div
         @click="keyPressed('down')"
-        :class="themeColor === 0 ? 'border-green-800 text-green-800 hover:border-green-900 hover:text-green-900' : themeColor === 1 ? ' border-white text-white hover:border-gray-100 hover:text-gray-100' : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'"
+        :class="
+          themeColor === 0
+            ? 'border-green-800 text-green-800 hover:border-green-900 hover:text-green-900'
+            : themeColor === 1
+            ? ' border-white text-white hover:border-gray-100 hover:text-gray-100'
+            : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'
+        "
         class="flex justify-center items-center w-10 h-10 border-4 duration-1000"
       >
         <svg

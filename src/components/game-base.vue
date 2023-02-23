@@ -1,8 +1,18 @@
 <template>
-  <div :class="themeColor === 0 ? 'text-green-500 bg-black' : themeColor === 1 ? ' bg-black text-white' : 'bg-white text-black'"
+  <div
+    :class="
+      themeColor === 0
+        ? 'text-green-500 bg-black'
+        : themeColor === 1
+        ? ' bg-black text-white'
+        : 'bg-white text-black'
+    "
     class="min-w-full min-h-screen w-full flex items-center justify-center duration-1000"
   >
-    <div :class="smallWindow() ? 'w-[220]' : 'w-[300px]'" class="flex items-center mx-auto h-screen">
+    <div
+      :class="smallWindow() ? 'w-[220]' : 'w-[300px]'"
+      class="flex items-center mx-auto h-screen"
+    >
       <div
         class="mx-auto min-h-0 h-full md:h-max"
         v-motion
@@ -16,7 +26,13 @@
             <p>Score: {{ score }}</p>
           </div>
           <svg
-            :class="themeColor === 0 ? 'fill-green-500' : themeColor === 1 ? ' fill-white' : 'fill-black'"
+            :class="
+              themeColor === 0
+                ? 'fill-green-500'
+                : themeColor === 1
+                ? ' fill-white'
+                : 'fill-black'
+            "
             xmlns="http://www.w3.org/2000/svg"
             class="icon flat-color cursor-pointer h-4 w-4 duration-1000"
             @click="setGame()"
@@ -34,7 +50,14 @@
           </svg>
         </div>
         <div class="relative w-full">
-          <canvas :class="themeColor === 0 ? 'border-green-500 shadow-green-500' : themeColor === 1 ? 'border-white shadow-white' : 'border-black shadow-black'"
+          <canvas
+            :class="
+              themeColor === 0
+                ? 'border-green-500 shadow-green-500'
+                : themeColor === 1
+                ? 'border-white shadow-white'
+                : 'border-black shadow-black'
+            "
             class="border m-auto block shadow-md duration-1000"
             ref="canvas"
             :width="smallWindow() ? '220' : '300'"
@@ -63,7 +86,8 @@
           </div>
         </div>
         <div class="flex flex-col h-max w-full">
-          <joystick-controller :themeColor="themeColor"
+          <joystick-controller
+            :themeColor="themeColor"
             v-if="isTouchDevice"
             @keyPressed="keyPressed($event)"
           ></joystick-controller>
@@ -102,7 +126,7 @@ import joystickController from "./joystick-controller.vue";
 export default {
   props: {
     username: String,
-    themeColor: Number
+    themeColor: Number,
   },
   components: {
     joystickController,
@@ -271,12 +295,9 @@ export default {
     },
     drawCanvas() {
       this.context.clearRect(0, 0, this.$refs.canvas.width, this.$refs.canvas.height);
-      if(this.themeColor == 0)
-      this.context.fillStyle = "green";
-      else if(this.themeColor == 1)
-      this.context.fillStyle = "white";
-      else
-      this.context.fillStyle = "black";
+      if (this.themeColor == 0) this.context.fillStyle = "green";
+      else if (this.themeColor == 1) this.context.fillStyle = "white";
+      else this.context.fillStyle = "black";
 
       for (let i = 0; i < this.snake.length; i++) {
         this.context.fillRect(
@@ -388,9 +409,9 @@ export default {
         this.canChangeDirection = false;
       }
     },
-    setThemeColor(){
-      this.$emit('setThemeColor')
-    }
+    setThemeColor() {
+      this.$emit("setThemeColor");
+    },
   },
 };
 </script>

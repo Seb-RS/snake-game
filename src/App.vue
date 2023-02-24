@@ -1,6 +1,10 @@
 <template>
   <div class="flex items-center w-screen h-screen">
-    <enterName v-if="!gameMain" @setUsername="setUsername($event)" :themeColor="themeColor"></enterName>
+    <enterName
+      v-if="!gameMain"
+      @setUsername="setUsername($event)"
+      :themeColor="themeColor"
+    ></enterName>
     <game-base
       v-else
       :username="username"
@@ -27,13 +31,8 @@ export default {
     };
   },
   mounted() {
-    if (localStorage.themeColor) {
-      this.themeColor = Number(localStorage.themeColor)
-    }
-    else 
-    {
-      this.themeColor = 0;
-    }
+    if (localStorage.themeColor) this.themeColor = Number(localStorage.themeColor);
+    else this.themeColor = 0;
   },
   methods: {
     setUsername(value) {
@@ -51,7 +50,7 @@ export default {
       if (this.themeColor != 2) this.themeColor++;
       else this.themeColor = 0;
 
-      localStorage.themeColor = this.themeColor
+      localStorage.themeColor = this.themeColor;
     },
   },
 };

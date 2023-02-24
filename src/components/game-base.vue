@@ -113,7 +113,7 @@
               </li>
             </ul>
           </div>
-          <button @click="setThemeColor()">cambiar color</button>
+          <triple-radio-button :themeColor="themeColor" @setThemeColor="setThemeColor($event)"></triple-radio-button>
         </div>
       </div>
     </div>
@@ -122,6 +122,7 @@
 
 <script>
 import joystickController from "./joystick-controller.vue";
+import tripleRadioButton from "./triple-radio-button.vue";
 
 export default {
   props: {
@@ -129,7 +130,7 @@ export default {
     themeColor: Number,
   },
   components: {
-    joystickController,
+    joystickController, tripleRadioButton,
   },
   data() {
     return {
@@ -409,8 +410,8 @@ export default {
         this.canChangeDirection = false;
       }
     },
-    setThemeColor() {
-      this.$emit("setThemeColor");
+    setThemeColor(data) {
+      this.$emit("setThemeColor", data);
     },
   },
 };

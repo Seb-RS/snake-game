@@ -46,9 +46,8 @@ export default {
     setGame() {
       this.gameMain = false;
     },
-    setThemeColor() {
-      if (this.themeColor != 2) this.themeColor++;
-      else this.themeColor = 0;
+    setThemeColor(data) {
+      this.themeColor = data
 
       localStorage.themeColor = this.themeColor;
     },

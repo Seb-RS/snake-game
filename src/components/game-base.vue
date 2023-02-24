@@ -34,7 +34,7 @@
                 : 'fill-black'
             "
             xmlns="http://www.w3.org/2000/svg"
-            class="icon flat-color cursor-pointer h-4 w-4 duration-1000"
+            class="icon flat-color cursor-pointer h-4 w-4 duration-600"
             @click="setGame()"
             data-name="Flat Color"
             viewBox="0 0 24 24"

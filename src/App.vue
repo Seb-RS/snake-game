@@ -11,23 +11,29 @@
       @state="setGame($event)"
       @setThemeColor="setThemeColor($event)"
       :themeColor="themeColor"
+      @openSlidebar="showSlidebar = true"
     ></game-base>
+    <slide-menu :showSlidebar="showSlidebar" @close="showSlidebar = false"></slide-menu>
   </div>
 </template>
 
 <script>
 import enterName from "./components/enter-name.vue";
 import gameBase from "./components/game-base.vue";
+import slideMenu from "./components/slide-menu.vue";
+
 export default {
   components: {
     enterName,
     gameBase,
+    slideMenu,
   },
   data() {
     return {
       username: null,
       gameMain: false,
       themeColor: 0, //0 = Mátrix, 1 = Dark, 2 = Light
+      showSlidebar: false,
     };
   },
   mounted() {
@@ -47,7 +53,7 @@ export default {
       this.gameMain = false;
     },
     setThemeColor(data) {
-      this.themeColor = data
+      this.themeColor = data;
 
       localStorage.themeColor = this.themeColor;
     },

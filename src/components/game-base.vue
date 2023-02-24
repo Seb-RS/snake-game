@@ -35,7 +35,7 @@
             "
             xmlns="http://www.w3.org/2000/svg"
             class="icon flat-color cursor-pointer h-4 w-4 duration-600"
-            @click="setGame()"
+            @click="$emit('openSlidebar')"
             data-name="Flat Color"
             viewBox="0 0 24 24"
           >
@@ -130,7 +130,7 @@ export default {
     themeColor: Number,
   },
   components: {
-    joystickController, tripleRadioButton,
+    joystickController, tripleRadioButton
   },
   data() {
     return {
@@ -413,6 +413,12 @@ export default {
     setThemeColor(data) {
       this.$emit("setThemeColor", data);
     },
+    openSlidebar() {
+      this.showSlidebar = true;
+    },
+    closeSlidebar() {
+      this.showSlidebar = false;
+    }
   },
 };
 </script>

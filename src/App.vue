@@ -26,6 +26,15 @@ export default {
       themeColor: 0, //0 = Mátrix, 1 = Dark, 2 = Light
     };
   },
+  mounted() {
+    if (localStorage.themeColor) {
+      this.themeColor = Number(localStorage.themeColor)
+    }
+    else 
+    {
+      this.themeColor = 0;
+    }
+  },
   methods: {
     setUsername(value) {
       if (value != null) {
@@ -41,6 +50,8 @@ export default {
     setThemeColor() {
       if (this.themeColor != 2) this.themeColor++;
       else this.themeColor = 0;
+
+      localStorage.themeColor = this.themeColor
     },
   },
 };

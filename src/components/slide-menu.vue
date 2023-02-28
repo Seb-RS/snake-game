@@ -21,12 +21,12 @@
       </div>
       <button
         @click="setGame()"
-        :class="borderTheme"
-        class="rounded-md w-full py-2 border mb-2 text-left pl-2"
+        :class="divTheme"
+        class="rounded-md w-full py-2 border mb-2 text-left pl-2 duration-150"
       >
         Set username
       </button>
-      <div :class="borderTheme" class="rounded-md w-full py-2 border pl-2">
+      <div :class="divTheme" class="rounded-md w-full py-2 border pl-2 duration-150">
         <p>Set color theme</p>
         <triple-radio-button
           :themeColor="themeColor"
@@ -60,17 +60,17 @@ export default {
   computed: {
     bgTheme() {
       return this.themeColor === 0
-        ? "bg-black border-r border-green-500 text-green-500"
+        ? "bg-gray-900 border-r border-green-500 text-green-500"
         : this.themeColor === 1
         ? "bg-gray-900 border-r border-gray-500 text-white"
         : "bg-gray-100 border-r border-gray-200 text-black";
     },
-    borderTheme() {
+    divTheme() {
       return this.themeColor === 0
-        ? "border-green-500"
+        ? "border-green-500 hover:border-green-400 hover:text-green-400 hover:bg-black cursor-pointer"
         : this.themeColor === 1
-        ? "border-gray-500"
-        : "border-gray-200";
+        ? "border-gray-500 hover:border-gray-100 hover:text-gray-100 hover:bg-black cursor-pointer"
+        : "border-gray-200 hover:border-gray-800 hover:text-gray-800 hover:bg-white cursor-pointer";
     },
   },
 };

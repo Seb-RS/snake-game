@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center w-screen h-screen">
+  <div class="flex items-center w-screen h-screen overflow-x-hidden">
     <enterName
       v-if="!gameMain && vLoader"
       @setUsername="setUsername($event)"

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="slidebar fixed top-0 left-0 h-full w-[80%] shadow-md transform ease-in-out duration-300"
+    class="slidebar fixed top-0 left-0 h-full w-[80%] lg:w-1/3 shadow-md transform ease-in-out duration-300"
     :class="{
       '-translate-x-full': !showSlidebar,
       'translate-x-0': showSlidebar,

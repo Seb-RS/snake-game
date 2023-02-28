@@ -1,19 +1,18 @@
 <template>
   <div class="flex items-center w-screen h-screen">
     <enterName
-      v-if="!gameMain"
+      v-if="!gameMain && vLoader"
       @setUsername="setUsername($event)"
       :themeColor="themeColor"
     ></enterName>
     <game-base
-      v-else
+      v-if="gameMain"
       :username="username"
-      @state="setGame($event)"
       @setThemeColor="setThemeColor($event)"
       :themeColor="themeColor"
       @openSlidebar="showSlidebar = true"
     ></game-base>
-    <slide-menu :showSlidebar="showSlidebar" @close="showSlidebar = false"></slide-menu>
+    <slide-menu :showSlidebar="showSlidebar" @close="showSlidebar = false" @state="setGame"></slide-menu>
   </div>
 </template>
 
@@ -33,12 +32,14 @@ export default {
       username: null,
       gameMain: false,
       themeColor: 0, //0 = Mátrix, 1 = Dark, 2 = Light
-      showSlidebar: false,
+      showSlidebar: true,
+      vLoader: false
     };
   },
   mounted() {
     if (localStorage.themeColor) this.themeColor = Number(localStorage.themeColor);
     else this.themeColor = 0;
+    this.vLoader = true
   },
   methods: {
     setUsername(value) {
@@ -51,6 +52,7 @@ export default {
     },
     setGame() {
       this.gameMain = false;
+      this.showSlidebar = false;
     },
     setThemeColor(data) {
       this.themeColor = data;

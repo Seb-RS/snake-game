@@ -365,10 +365,6 @@ export default {
 
       localStorage.records = JSON.stringify(this.records);
     },
-    setGame() {
-      localStorage.removeItem("username");
-      this.$emit("state");
-    },
     numberToOrdinal(n) {
       if (isNaN(n) || !isFinite(n)) {
         return "";

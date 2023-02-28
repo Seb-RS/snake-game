@@ -1,30 +1,38 @@
 <template>
   <div
-    class="slidebar fixed top-0 left-0 h-full w-[80%] shadow-md transform ease-in-out duration-300 px-4"
+    class="slidebar fixed top-0 left-0 h-full w-[80%] shadow-md transform ease-in-out duration-300"
     :class="{
       '-translate-x-full': !showSlidebar,
       'translate-x-0': showSlidebar,
-      [bgTheme]: true,
     }"
   >
-    <div class="flex justify-between w-full py-4">
-      <p class="font-bold text-lg">Settings</p>
-      <button @click="$emit('close')" class="">
-        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-          <path
-            fill="currentColor"
-            stroke="currentColor"
-            d="m14.41 3.27-.82-.94L8 7.17 2.41 2.33l-.82.94L7.05 8l-5.46 4.73.82.94L8 8.83l5.59 4.84.82-.94L8.95 8l5.46-4.73z"
-          />
-        </svg>
+    <div :class="bgTheme" class="w-full h-full duration-700 px-4">
+      <div class="flex justify-between w-full py-4">
+        <p class="font-bold text-lg">Settings</p>
+        <button @click="$emit('close')" class="">
+          <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <path
+              fill="currentColor"
+              stroke="currentColor"
+              d="m14.41 3.27-.82-.94L8 7.17 2.41 2.33l-.82.94L7.05 8l-5.46 4.73.82.94L8 8.83l5.59 4.84.82-.94L8.95 8l5.46-4.73z"
+            />
+          </svg>
+        </button>
+      </div>
+      <button
+        @click="setGame()"
+        :class="borderTheme"
+        class="duration-700 rounded-md w-full py-2 border mb-2 text-left pl-2"
+      >
+        Set username
       </button>
-    </div>
-    <button @click="setGame()" :class="borderTheme" class="rounded-md w-full py-2 border mb-2 text-left pl-2">
-      Set username
-    </button>
-    <div :class="borderTheme" class="rounded-md w-full py-2 border pl-2">
-      <p>Set color theme</p>
-      <triple-radio-button :themeColor="themeColor" @setThemeColor="setThemeColor($event)"></triple-radio-button>
+      <div :class="borderTheme" class="duration-700 rounded-md w-full py-2 border pl-2">
+        <p>Set color theme</p>
+        <triple-radio-button
+          :themeColor="themeColor"
+          @setThemeColor="setThemeColor($event)"
+        ></triple-radio-button>
+      </div>
     </div>
   </div>
 </template>
@@ -37,8 +45,8 @@ export default {
     showSlidebar: Boolean,
     themeColor: Number,
   },
-  components : {
-    tripleRadioButton
+  components: {
+    tripleRadioButton,
   },
   methods: {
     setGame() {

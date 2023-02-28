@@ -32,7 +32,7 @@ export default {
       username: null,
       gameMain: false,
       themeColor: 0, //0 = Mátrix, 1 = Dark, 2 = Light
-      showSlidebar: true,
+      showSlidebar: false,
       vLoader: false
     };
   },

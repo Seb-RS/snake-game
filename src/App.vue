@@ -8,11 +8,12 @@
     <game-base
       v-if="gameMain"
       :username="username"
-      @setThemeColor="setThemeColor($event)"
       :themeColor="themeColor"
       @openSlidebar="showSlidebar = true"
     ></game-base>
-    <slide-menu v-if="vLoader" :showSlidebar="showSlidebar" @close="showSlidebar = false" @state="setGame" :themeColor="themeColor"></slide-menu>
+    <slide-menu v-if="vLoader" :showSlidebar="showSlidebar" @close="showSlidebar = false" @state="setGame" 
+    @setThemeColor="setThemeColor($event)"
+     :themeColor="themeColor"></slide-menu>
   </div>
 </template>
 

@@ -19,22 +19,34 @@
         </svg>
       </button>
     </div>
-    <button @click="setGame()" :class="borderTheme" class="rounded-md w-full h-10 border">
+    <button @click="setGame()" :class="borderTheme" class="rounded-md w-full py-2 border mb-2 text-left pl-2">
       Set username
     </button>
+    <div :class="borderTheme" class="rounded-md w-full py-2 border pl-2">
+      <p>Set color theme</p>
+      <triple-radio-button :themeColor="themeColor" @setThemeColor="setThemeColor($event)"></triple-radio-button>
+    </div>
   </div>
 </template>
 
 <script>
+import tripleRadioButton from "./triple-radio-button.vue";
+
 export default {
   props: {
     showSlidebar: Boolean,
     themeColor: Number,
   },
+  components : {
+    tripleRadioButton
+  },
   methods: {
     setGame() {
       localStorage.removeItem("username");
       this.$emit("state");
+    },
+    setThemeColor(data) {
+      this.$emit("setThemeColor", data);
     },
   },
   computed: {

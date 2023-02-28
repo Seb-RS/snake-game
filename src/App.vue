@@ -12,7 +12,7 @@
       :themeColor="themeColor"
       @openSlidebar="showSlidebar = true"
     ></game-base>
-    <slide-menu :showSlidebar="showSlidebar" @close="showSlidebar = false" @state="setGame"></slide-menu>
+    <slide-menu v-if="vLoader" :showSlidebar="showSlidebar" @close="showSlidebar = false" @state="setGame" :themeColor="themeColor"></slide-menu>
   </div>
 </template>
 

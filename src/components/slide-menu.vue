@@ -1,18 +1,27 @@
 <template>
   <div
-    class="slidebar fixed top-0 left-0 h-full bg-white w-[80%] shadow-md transform ease-in-out duration-300"
-    :class="{ '-translate-x-full': !showSlidebar, 'translate-x-0': showSlidebar }"
+    class="slidebar fixed top-0 left-0 h-full w-[80%] shadow-md transform ease-in-out duration-300 px-4"
+    :class="{
+      '-translate-x-full': !showSlidebar,
+      'translate-x-0': showSlidebar,
+      [bgTheme]: true,
+    }"
   >
-  <button @click="setGame()"> cambiar usuario</button>
-    <div class="p-4">
-      <p>Este es el contenido del slidebar.</p>
-      <button
-        @click="$emit('close')"
-        class="bg-blue-500 text-white px-4 py-2 rounded mt-4"
-      >
-        Cerrar slidebar
+    <div class="flex justify-between w-full py-4">
+      <p class="font-bold text-lg">Settings</p>
+      <button @click="$emit('close')" class="">
+        <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <path
+            fill="currentColor"
+            stroke="currentColor"
+            d="m14.41 3.27-.82-.94L8 7.17 2.41 2.33l-.82.94L7.05 8l-5.46 4.73.82.94L8 8.83l5.59 4.84.82-.94L8.95 8l5.46-4.73z"
+          />
+        </svg>
       </button>
     </div>
+    <button @click="setGame()" :class="borderTheme" class="rounded-md w-full h-10 border">
+      Set username
+    </button>
   </div>
 </template>
 
@@ -20,11 +29,28 @@
 export default {
   props: {
     showSlidebar: Boolean,
+    themeColor: Number,
   },
   methods: {
     setGame() {
       localStorage.removeItem("username");
       this.$emit("state");
+    },
+  },
+  computed: {
+    bgTheme() {
+      return this.themeColor === 0
+        ? "bg-black border-r border-green-500 text-green-500"
+        : this.themeColor === 1
+        ? "bg-gray-900 border-r border-gray-500 text-white"
+        : "bg-gray-100 border-r border-gray-200 text-black";
+    },
+    borderTheme() {
+      return this.themeColor === 0
+        ? "border-green-500"
+        : this.themeColor === 1
+        ? "border-gray-500"
+        : "border-gray-200";
     },
   },
 };

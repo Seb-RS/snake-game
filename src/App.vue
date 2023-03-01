@@ -10,9 +10,10 @@
       :username="username"
       :themeColor="themeColor"
       @openSlidebar="showSlidebar = true"
+      :joystickSize="joystickSize"
     ></game-base>
     <slide-menu v-if="vLoader" :showSlidebar="showSlidebar" @close="showSlidebar = false" @state="setGame" 
-    @setThemeColor="setThemeColor($event)"
+    @setThemeColor="setThemeColor($event)" @setJoystickSize="setJoystickSize($event)"
      :themeColor="themeColor"></slide-menu>
   </div>
 </template>
@@ -34,6 +35,7 @@ export default {
       gameMain: false,
       themeColor: 0, //0 = Mátrix, 1 = Dark, 2 = Light
       showSlidebar: false,
+      joystickSize: null,
       vLoader: false
     };
   },
@@ -60,7 +62,15 @@ export default {
 
       localStorage.themeColor = this.themeColor;
     },
+    setJoystickSize(data){
+      this.joystickSize = data;
+    }
   },
+  watch: {
+    joystickSize(newVal){
+      localStorage.joystickSize = newVal
+    }
+  } 
 };
 </script>
 

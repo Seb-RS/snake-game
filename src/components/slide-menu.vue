@@ -26,12 +26,18 @@
       >
         Set username
       </button>
-      <div :class="divTheme" class="rounded-md w-full py-2 border pl-2 duration-150">
+      <div :class="divTheme" class="rounded-md w-full py-2 border mb-2 pl-2 duration-150">
         <p>Set color theme</p>
         <triple-radio-button
           :themeColor="themeColor"
           @setThemeColor="setThemeColor($event)"
         ></triple-radio-button>
+      </div>
+      <div :class="divTheme" class="rounded-md w-full py-2 border mb-2 pl-2 duration-150">
+        <p>Set color theme</p>
+        <slider-input @input="setJoystickSize($event)"
+          :themeColor="themeColor"
+        ></slider-input>
       </div>
     </div>
   </div>
@@ -39,6 +45,7 @@
 
 <script>
 import tripleRadioButton from "./triple-radio-button.vue";
+import sliderInput from "./slider-input.vue";
 
 export default {
   props: {
@@ -47,6 +54,12 @@ export default {
   },
   components: {
     tripleRadioButton,
+    sliderInput,
+  },
+  data() {
+    return {
+      joystickSize: null,
+    }
   },
   methods: {
     setGame() {
@@ -56,6 +69,10 @@ export default {
     setThemeColor(data) {
       this.$emit("setThemeColor", data);
     },
+    setJoystickSize(data)
+    {
+      this.joystickSize = data;
+    }
   },
   computed: {
     bgTheme() {
@@ -72,6 +89,11 @@ export default {
         ? "border-gray-500 hover:border-gray-100 hover:text-gray-100 hover:bg-black cursor-pointer"
         : "border-gray-200 hover:border-gray-800 hover:text-gray-800 hover:bg-white cursor-pointer";
     },
+  },
+  watch: {
+    joystickSize(newVal) {
+      this.$emit('setJoystickSize', newVal)
+    }
   },
 };
 </script>

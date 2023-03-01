@@ -81,7 +81,7 @@
           </div>
         </div>
         <div class="flex flex-col h-max w-full">
-          <joystick-controller
+          <joystick-controller :joystickSize="joystickSize"
             :themeColor="themeColor"
             v-if="isTouchDevice"
             @keyPressed="keyPressed($event)"
@@ -121,6 +121,7 @@ export default {
   props: {
     username: String,
     themeColor: Number,
+    joystickSize: Number,
   },
   components: {
     joystickController,

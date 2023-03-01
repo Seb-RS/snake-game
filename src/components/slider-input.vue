@@ -14,9 +14,6 @@
       :style="{ left: handlePosition + '%' }"
       @mousedown.prevent
     ></div>
-    <p>
-      {{ handlePosition }}
-    </p>
   </div>
 </template>
 
@@ -39,13 +36,24 @@ export default {
       handlePosition: 0,
       sliderWidth: 0,
       handleWidth: 0,
-      initVal: 33,
+      initVal: 50,
     };
   },
   mounted() {
     this.sliderWidth = this.$refs.slider.clientWidth;
     this.handleWidth = this.$refs.handle.clientWidth;
 
+    if (localStorage.joystickSize) {
+      const initialValue = Number(localStorage.joystickSize);
+      if (!isNaN(initialValue) && initialValue >= this.min && initialValue <= this.max) {
+        const percentage = ((initialValue - this.min) / (this.max - this.min)) * 100;
+        this.initVal = percentage;
+        this.$emit("input", initialValue);
+      }
+    } else {
+      this.initVal = 33;
+      this.$emit("input", this.initVal);
+    }
     this.updateHandlePosition(this.initVal);
   },
   methods: {

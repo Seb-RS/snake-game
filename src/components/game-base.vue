@@ -415,12 +415,4 @@ export default {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(193, 193, 193, 0.3);
 }
-
-::-webkit-scrollbar-thumb {
-  margin: auto;
-  width: 6px;
-  border-radius: 10px;
-  background-color: rgb(34 197 94 / 1);
-  -webkit-box-shadow: inset 0 0 6px rgba(57, 56, 56, 0.878);
-}
 </style>

@@ -1,5 +1,14 @@
 <template>
-  <div class="flex items-center w-screen h-screen overflow-x-hidden">
+  <div
+    class="flex items-center w-screen h-screen overflow-x-hidden"
+    :class="
+      themeColor === 0
+        ? 'scrollbar-thumb-matrix'
+        : themeColor === 1
+        ? 'scrollbar-thumb-dark' 
+        : 'scrollbar-thumb-light'
+    "
+  >
     <enterName
       v-if="!gameMain && vLoader"
       @setUsername="setUsername($event)"
@@ -108,5 +117,29 @@ body {
 
 * {
   outline: 0;
+}
+
+.scrollbar-thumb-matrix::-webkit-scrollbar-thumb {
+  margin: auto;
+  width: 6px;
+  border-radius: 10px;
+  background-color: rgb(34 197 94 / 1);
+  -webkit-box-shadow: inset 0 0 6px rgba(57, 56, 56, 0.878);
+}
+
+.scrollbar-thumb-dark::-webkit-scrollbar-thumb {
+  margin: auto;
+  width: 6px;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  -webkit-box-shadow: inset 0 0 6px rgba(57, 56, 56, 0.878);
+}
+
+.scrollbar-thumb-light::-webkit-scrollbar-thumb {
+  margin: auto;
+  width: 6px;
+  border-radius: 10px;
+  background-color: rgb(0, 0, 0);
+  -webkit-box-shadow: inset 0 0 6px rgba(57, 56, 56, 0.878);
 }
 </style>

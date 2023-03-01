@@ -7,7 +7,7 @@
         ? ' bg-black text-white'
         : 'bg-white text-black'
     "
-    class="min-w-full min-h-screen w-full flex items-center justify-center duration-1000"
+    class="min-w-full min-h-screen w-full flex items-center justify-center duration-1000 mt-4 md:mt-0"
   >
     <div
       :class="smallWindow() ? 'w-[220]' : 'w-[300px]'"

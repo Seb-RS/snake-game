@@ -122,6 +122,7 @@ export default {
     username: String,
     themeColor: Number,
     joystickSize: Number,
+    isTouchDevice: Boolean,
   },
   components: {
     joystickController,
@@ -144,16 +145,9 @@ export default {
       records: [],
       windowWidth: window.innerWidth,
       loaded: false,
-      isTouchDevice: true,
     };
   },
   mounted() {
-    if ("ontouchstart" in window) {
-      this.isTouchDevice = true;
-    } else {
-      this.isTouchDevice = false;
-    }
-
     this.records = [];
 
     if (localStorage.records) {

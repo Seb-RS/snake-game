@@ -11,10 +11,18 @@
       :themeColor="themeColor"
       @openSlidebar="showSlidebar = true"
       :joystickSize="joystickSize"
+      :isTouchDevice="isTouchDevice"
     ></game-base>
-    <slide-menu v-if="vLoader" :showSlidebar="showSlidebar" @close="showSlidebar = false" @state="setGame" 
-    @setThemeColor="setThemeColor($event)" @setJoystickSize="setJoystickSize($event)"
-     :themeColor="themeColor"></slide-menu>
+    <slide-menu
+      v-if="vLoader"
+      :showSlidebar="showSlidebar"
+      @close="showSlidebar = false"
+      @state="setGame"
+      @setThemeColor="setThemeColor($event)"
+      @setJoystickSize="setJoystickSize($event)"
+      :themeColor="themeColor"
+      :isTouchDevice="isTouchDevice"
+    ></slide-menu>
   </div>
 </template>
 
@@ -36,13 +44,19 @@ export default {
       themeColor: 0, //0 = Mátrix, 1 = Dark, 2 = Light
       showSlidebar: false,
       joystickSize: null,
-      vLoader: false
+      vLoader: false,
     };
   },
   mounted() {
+    if ("ontouchstart" in window) {
+      this.isTouchDevice = true;
+    } else {
+      this.isTouchDevice = false;
+    }
+
     if (localStorage.themeColor) this.themeColor = Number(localStorage.themeColor);
     else this.themeColor = 0;
-    this.vLoader = true
+    this.vLoader = true;
   },
   methods: {
     setUsername(value) {
@@ -62,15 +76,15 @@ export default {
 
       localStorage.themeColor = this.themeColor;
     },
-    setJoystickSize(data){
+    setJoystickSize(data) {
       this.joystickSize = data;
-    }
+    },
   },
   watch: {
-    joystickSize(newVal){
-      localStorage.joystickSize = newVal
-    }
-  } 
+    joystickSize(newVal) {
+      localStorage.joystickSize = newVal;
+    },
+  },
 };
 </script>
 

@@ -33,7 +33,7 @@
           @setThemeColor="setThemeColor($event)"
         ></triple-radio-button>
       </div>
-      <div :class="divTheme" class="rounded-md w-full py-2 border mb-2 pl-2 duration-150">
+      <div v-if="isTouchDevice" :class="divTheme" class="rounded-md w-full py-2 border mb-2 pl-2 duration-150">
         <p>Set color theme</p>
         <slider-input @input="setJoystickSize($event)"
           :themeColor="themeColor"
@@ -51,6 +51,7 @@ export default {
   props: {
     showSlidebar: Boolean,
     themeColor: Number,
+    isTouchDevice: Boolean,
   },
   components: {
     tripleRadioButton,

@@ -34,7 +34,7 @@
         ></triple-radio-button>
       </div>
       <div v-if="isTouchDevice" :class="divTheme" class="rounded-md w-full py-2 border mb-2 px-2 duration-150">
-        <p>Set color theme</p>
+        <p>Set joystick size</p>
         <slider-input @input="setJoystickSize($event)"
           :themeColor="themeColor"
         ></slider-input>

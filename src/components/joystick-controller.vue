@@ -12,7 +12,7 @@
             : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'
         "
         :style="{ width: joystickResized, height: joystickResized }"
-        class="flex justify-center items-center border-4 duration-1000"
+        class="flex justify-center items-center border-4 duration-1000 transition-colors"
       >
         <svg
           fill="currentColor"
@@ -36,7 +36,7 @@
             ? ' border-white text-white hover:border-gray-100 hover:text-gray-100'
             : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'
         "
-        class="flex justify-center items-center w-10 h-10 border-4 duration-1000"
+        class="flex justify-center items-center w-10 h-10 border-4 duration-1000 transition-colors"
       >
         <svg
           class="-rotate-90"
@@ -60,7 +60,7 @@
             ? ' border-white text-white hover:border-gray-100 hover:text-gray-100'
             : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'
         "
-        class="flex justify-center items-center w-10 h-10 border-4 duration-1000"
+        class="flex justify-center items-center w-10 h-10 border-4 duration-1000 transition-colors"
       >
         <svg
           class="rotate-90"
@@ -85,7 +85,7 @@
             ? ' border-white text-white hover:border-gray-100 hover:text-gray-100'
             : 'border-gray-900 text-gray-900 hover:border-black hover:text-black'
         "
-        class="flex justify-center items-center w-10 h-10 border-4 duration-1000"
+        class="flex justify-center items-center w-10 h-10 border-4 duration-1000 transition-colors"
       >
         <svg
           class="rotate-180"

@@ -1,13 +1,13 @@
 <template>
   <div
-    class="slider"
+    class="slider border-[3px] border-solid duration-700" :class="themeColor === 0 ? 'border-green-500' : themeColor === 1 ? ' border-white' : 'border-black'"
     ref="slider"
     @mousedown="startDrag"
     @touchstart="startDrag"
     @click="setHandlePosition"
   >
     <div class="slider-track"></div>
-    <div class="slider-progress" :style="{ width: handlePosition + '%' }"></div>
+    <div class="slider-progress" :style="{ width: handlePosition + '%' }" :class="themeColor === 0 ? 'bg-green-300' : themeColor === 1 ? ' bg-gray-300' : 'bg-gray-800'"></div>
     <div
       class="slider-handle"
       ref="handle"
@@ -28,6 +28,7 @@ export default {
       type: Number,
       default: 50,
     },
+    themeColor: Number,
   },
   data() {
     return {
@@ -156,7 +157,6 @@ export default {
   position: relative;
   width: 100%;
   height: 20px;
-  background-color: #ddd;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -178,7 +178,6 @@ export default {
   left: 0;
   transform: translateY(-50%);
   height: 5px;
-  background-color: #000;
   border-radius: 3px;
 }
 

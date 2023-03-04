@@ -4,6 +4,9 @@ This is a simple snake game created in VueJS 3. The objective of the game is to 
 ## How to play
 Use the arrow keys to move the snake in the corresponding direction.
 
+## Demo
+You can try the live game at https://snake.sebdev.cl.
+
 ## Project setup
 ```
 npm install
